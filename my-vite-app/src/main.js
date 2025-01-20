@@ -5,25 +5,16 @@ const confirmBtn = document.getElementById('confirm-btn');
 const openModalClass = 'modal_is-opened';
 const cancelBtn = document.getElementById('cancel-btn');
 
-let result = null; 
+let result = null;
 
 deleteButtons.forEach(button => {
-    button.addEventListener('click', function(event) {
-      const deleteItem = event.target.closest('li');
-      if (deleteItem) {
-        result = deleteItem; 
-        openModal(modal);  
-      }
+    button.addEventListener('click', function (event) {
+        const deleteItem = event.target.closest('li');
+        if (deleteItem) {
+            result = deleteItem;
+            openModal(modal);
+        }
     });
-  });
-
-confirmBtn.addEventListener('click', () => { 
-    if (result !== null ) {
-        result.remove();
-    }
-    else{
-        closeModal(modal);
-    }
 });
 
 function openModal(modal) {
@@ -33,7 +24,7 @@ function openModal(modal) {
 
 function closeActiveModal(evt) {
     if (evt.key === 'Escape') {
-      closeActiveModal(modal);
+        closeModal(modal);
     }
 }
 
@@ -42,7 +33,7 @@ function closeModal(modal) {
     document.removeEventListener('keydown', closeActiveModal);
 }
 
-confirmBtn.addEventListener('click', () => { 
+confirmBtn.addEventListener('click', () => {
     if (result !== null) {
         result.remove();
         closeModal(modal);
