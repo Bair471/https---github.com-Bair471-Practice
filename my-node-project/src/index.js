@@ -49,7 +49,7 @@ const pizzaData = [
 
 function App() {
     return (
-        <div>
+        <div className="container">
             <Header />
             <Menu />
             <Footer />
@@ -97,15 +97,24 @@ function Menu() {
     )
 }
 
-function Pizza(props) {
+function Pizza({ pizzaObj }) {
     return (
-        <div className="pizza">
-            <img src={props.pizzaObj.image} alt={props.pizzaObj.name} />
-            <h3>{props.pizzaObj.name}</h3>
-            <p>{props.pizzaObj.ingredient}</p>
-            <span>{props.pizzaObj.price + 3}</span>
-        </div>
-    )
+        <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
+            <img src={pizzaObj.image} alt={pizzaObj.name} />
+            <div>
+                <h3>{pizzaObj.name}</h3>
+                <p>{pizzaObj.ingredients}</p>
+
+                {/* {pizzaObj.soldOut ? (
+                    <span>SOLD OUT</span>
+                ) : (
+                    <span>{pizzaObj.price}</span>
+                )} */}
+
+                <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
+            </div>
+        </li>
+    );
 }
 
 function Footer() {
@@ -122,12 +131,15 @@ function Footer() {
     }
     // if(hour >= openHour && hour <= closeHour) alert("We are currently open!");
     // else alert("Sorry we are closed!")
+
+
+
     return (
         <footer className="footer">
             {isOpen && (
                 <div className="order">
                     <p>We're open until until {closeHour} : 00. Come visit us or order online.</p>
-                <button className="btn">Order</button>
+                    <button className="btn">Order</button>
                 </div>)}
         </footer>
     )
@@ -140,3 +152,16 @@ root.render(
     </React.StrictMode>);
 
 
+// return (
+//     <footer className="footer">
+//         {isOpen ? (
+//             <div>
+//                 <p>
+//                     We are good!
+//                 </p>
+//             </div>
+//         ) : (
+//             <div></div>
+//         )}
+//     </footer>
+// )
